@@ -1,10 +1,12 @@
+import * as dotenv from 'dotenv';
 import { defineConfig } from 'drizzle-kit';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+dotenv.config();
+
 export default defineConfig({
   dialect: 'postgresql',
   schema: './src/db/schema/*',
-  out: './src/db/drizzle',
+  out: './src/db/drizzle/migrations',
   dbCredentials: {
     url: process.env.DATABASE_URL as string,
   },

@@ -1,5 +1,5 @@
 {
-  "id": "0cbf039d-0b45-4b24-81b8-b8d0cbc2c551",
+  "id": "fb2ae242-7677-4669-8b63-fa0c60cceab5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -25,20 +25,20 @@
             "cycle": false
           }
         },
-        "urlId": {
-          "name": "urlId",
+        "url_id": {
+          "name": "url_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "ipAdress": {
-          "name": "ipAdress",
+        "ip_address": {
+          "name": "ip_address",
           "type": "varchar(39)",
           "primaryKey": false,
           "notNull": true
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
@@ -50,7 +50,7 @@
           "name": "url_idx",
           "columns": [
             {
-              "expression": "urlId",
+              "expression": "url_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -90,18 +90,18 @@
             "cycle": false
           }
         },
-        "originalUrl": {
-          "name": "originalUrl",
+        "original_url": {
+          "name": "original_url",
           "type": "varchar(2048)",
           "primaryKey": false,
           "notNull": true
         },
-        "expiresAt": {
-          "name": "expiresAt",
+        "expires_at": {
+          "name": "expires_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "now() + INTERVAL 1 MONTH"
+          "default": "NOW() + INTERVAL '1 month'"
         },
         "alias": {
           "name": "alias",
@@ -109,15 +109,31 @@
           "primaryKey": false,
           "notNull": true
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
         }
       },
-      "indexes": {},
+      "indexes": {
+        "alias_idx": {
+          "name": "alias_idx",
+          "columns": [
+            {
+              "expression": "alias",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {

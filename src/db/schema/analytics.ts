@@ -10,10 +10,10 @@ import {
 export const analyticsTable = pgTable(
   'analytics',
   {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    urlId: integer().notNull(),
-    ipAdress: varchar({ length: 39 }).notNull(),
-    createdAt: timestamp().default(sql`now()`),
+    id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+    urlId: integer('url_id').notNull(),
+    ipAddress: varchar('ip_address', { length: 39 }).notNull(),
+    createdAt: timestamp('created_at').default(sql`now()`),
   },
   (table) => ({
     urlIdx: index('url_idx').on(table.urlId),
