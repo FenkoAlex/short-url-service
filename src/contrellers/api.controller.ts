@@ -10,14 +10,14 @@ import {
 } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
 
-import { AppService } from './app.service';
-import { CreateUrlDto } from './dto/create-url.dto';
-import { ShortUrlDTO } from './interfaces';
+import { AppService } from '../services/api.service';
+import { CreateUrlDto } from '../dto/create-url.dto';
+import { ShortUrlDTO } from '../interfaces';
 
 import type { Request, Response } from 'express';
 
-@Controller()
-export class AppController {
+@Controller('/api/v1')
+export class ApiController {
   constructor(private readonly appService: AppService) {}
 
   @Post('shorten')

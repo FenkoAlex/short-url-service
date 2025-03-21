@@ -8,9 +8,9 @@ import { Inject } from '@nestjs/common';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { eq, and, gt, sql } from 'drizzle-orm';
 
-import { ShortUrlDTO } from './interfaces';
-import { urlsSchema, analyticsSchema } from './db/schema';
-import { DrizzleAsyncProvider } from './drizzle.provider';
+import { ShortUrlDTO } from '../interfaces';
+import { urlsSchema, analyticsSchema } from '../db/schema';
+import { DrizzleAsyncProvider } from '../drizzle.provider';
 
 import type { Response } from 'express';
 
