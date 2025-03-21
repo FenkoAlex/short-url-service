@@ -7,7 +7,7 @@ import {
   index,
 } from 'drizzle-orm/pg-core';
 
-export const analyticsTable = pgTable(
+export const analyticsSchema = pgTable(
   'analytics',
   {
     id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
