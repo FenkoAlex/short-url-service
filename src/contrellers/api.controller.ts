@@ -16,7 +16,7 @@ import { ShortUrlDTO } from '../interfaces';
 
 import type { Request, Response } from 'express';
 
-@Controller('/api/v1')
+@Controller('/v1')
 export class ApiController {
   constructor(private readonly appService: AppService) {}
 

@@ -114,7 +114,7 @@ export class AppService {
           clickCount: sql<number>`coalesce(count(${analyticsSchema}), 0)`,
         })
         .from(urlsSchema)
-        .innerJoin(analyticsSchema, eq(analyticsSchema.urlId, urlsSchema.id))
+        .leftJoin(analyticsSchema, eq(analyticsSchema.urlId, urlsSchema.id))
         .groupBy(urlsSchema.originalUrl, urlsSchema.createdAt)
         .where(eq(urlsSchema.alias, alias));
     } catch (error) {
@@ -129,10 +129,7 @@ export class AppService {
 
   async deleteShortUrl(alias: string) {
     try {
-      await this.db
-        .delete(urlsSchema)
-        .where(eq(urlsSchema.alias, alias))
-        .returning();
+      await this.db.delete(urlsSchema).where(eq(urlsSchema.alias, alias));
       return 'success';
     } catch (error) {
       throw new InternalServerErrorException(error, 'Database error');
@@ -166,6 +163,11 @@ export class AppService {
         )
         .where(eq(urlsSchema.alias, alias))
         .limit(limit);
+      if (query.length) {
+        return query[0];
+      } else {
+        return null;
+      }
     } catch (error) {
       throw new InternalServerErrorException(error, 'Database error');
     }
