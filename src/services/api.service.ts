@@ -24,7 +24,7 @@ enum PG_ERROR_CODE {
 }
 
 @Injectable()
-export class AppService {
+export class ApiService {
   constructor(
     @Inject(DrizzleAsyncProvider)
     private db: NodePgDatabase,
@@ -121,7 +121,7 @@ export class AppService {
       throw new InternalServerErrorException(error, 'Database error');
     }
     if (!query.length) {
-      throw new NotFoundException();
+      return JSON.stringify(null);
     }
 
     return query[0];
@@ -166,7 +166,7 @@ export class AppService {
       if (query.length) {
         return query[0];
       } else {
-        return null;
+        return JSON.stringify(null);
       }
     } catch (error) {
       throw new InternalServerErrorException(error, 'Database error');
