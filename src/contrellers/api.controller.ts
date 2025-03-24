@@ -32,32 +32,30 @@ export class ApiController {
     if (createUrlDto.expiresAt) {
       tmpParams.expiresAt = new Date(createUrlDto.expiresAt || '');
     }
-    const result = await this.apiService.createShortUrl(tmpParams);
-
-    return result;
+    return this.apiService.createShortUrl(tmpParams);
   }
 
   @Get('info/:alias')
-  async getInfo(@Param('alias') alias: string) {
-    return await this.apiService.getInfo(alias);
+  getInfo(@Param('alias') alias: string) {
+    return this.apiService.getInfo(alias);
   }
 
   @Delete('delete/:alias')
-  async deleteUrl(@Param('alias') alias: string) {
-    return await this.apiService.deleteShortUrl(alias);
+  deleteUrl(@Param('alias') alias: string) {
+    return this.apiService.deleteShortUrl(alias);
   }
 
   @Get('analytics/:alias')
-  async getAnalytics(@Param('alias') alias: string) {
-    return await this.apiService.getAnalitics(alias, 5);
+  getAnalytics(@Param('alias') alias: string) {
+    return this.apiService.getAnalitics(alias, 5);
   }
 
   @Get('/:alias')
-  async redirect(
+  redirect(
     @Req() req: Request,
     @Res() res: Response,
     @Param('alias') alias: string,
   ) {
-    await this.apiService.redirect(res, encodeURI(alias), req.ip || '');
+    this.apiService.redirect(res, encodeURI(alias), req.ip || '');
   }
 }
